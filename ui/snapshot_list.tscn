@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/scene_param_dashboard/ui/snapshot_list.gd" id="1"]
+
+[node name="SnapshotList" type="AcceptDialog"]
+title = "快照管理"
+script = ExtResource("1")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="List" type="ItemList" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="BtnRestore" type="Button" parent="VBox/HBox"]
+layout_mode = 2
+disabled = true
+
+[node name="BtnDelete" type="Button" parent="VBox/HBox"]
+layout_mode = 2
+disabled = true
