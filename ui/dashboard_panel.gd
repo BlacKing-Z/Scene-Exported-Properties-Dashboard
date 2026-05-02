@@ -28,7 +28,7 @@ var _sync_timer: float = 0.0
 @onready var _tree: Tree = $Tree
 
 func _ready() -> void:
-	_search_bar.placeholder_text = "搜索变量..."
+	_search_bar.placeholder_text = "搜索"
 	_search_bar.right_icon = get_theme_icon("Search", "EditorIcons")
 	_search_bar.text_changed.connect(_on_search_changed)
 
@@ -274,11 +274,10 @@ func _on_tree_cell_selected() -> void:
 	var key: String = meta["key"]
 	if _favorites.has(key):
 		_favorites.erase(key)
-		item.set_text(2, "☆")
 	else:
 		_favorites[key] = true
-		item.set_text(2, "★")
-	_rebuild_tree()
+	# Tree 处于 blocked 状态时不能直接 rebuild，需延迟
+	call_deferred("_rebuild_tree")
 
 func _convert_value(text: String, reference) -> Variant:
 	match typeof(reference):
@@ -353,14 +352,14 @@ func _on_snapshot_pressed() -> void:
 func _on_snapshot_confirmed(snap_name: String) -> void:
 	if snap_name == "":
 		return
-	var scene_path: String = plugin.get_editor_interface().get_current_path()
+	var scene_path: String = _get_edited_scene_path()
 	_snapshot_mgr.take_snapshot(snap_name, scene_path, _collected)
 
 func _on_snapshot_list_pressed() -> void:
 	var dialog = load("res://addons/scene_param_dashboard/ui/snapshot_list.tscn").instantiate()
-	add_child(dialog)
-	var scene_path: String = plugin.get_editor_interface().get_current_path()
+	var scene_path: String = _get_edited_scene_path()
 	dialog.setup(_snapshot_mgr.list_snapshots(scene_path), _snapshot_mgr)
+	add_child(dialog)
 	dialog.snapshot_selected.connect(_on_snapshot_selected)
 	dialog.popup_centered(Vector2i(400, 500))
 
@@ -371,6 +370,17 @@ func _on_snapshot_selected(snapshot: Dictionary) -> void:
 func _on_apply_pressed() -> void:
 	_prop_editor.apply_to_scene_file(_node_map)
 	_update_apply_button()
+
+## 获取当前编辑场景的资源路径
+func _get_edited_scene_path() -> String:
+	var root: Node = plugin.get_editor_interface().get_edited_scene_root()
+	if root:
+		var owner: Node = root.owner if root.owner else root
+		var scene_path: String = owner.scene_file_path
+		if scene_path != "":
+			return scene_path
+	# 兜底
+	return plugin.get_editor_interface().get_current_path()
 
 func _get_all_groups() -> PackedStringArray:
 	var groups: PackedStringArray = []

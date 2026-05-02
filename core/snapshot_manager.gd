@@ -93,22 +93,28 @@ func list_snapshots(scene_path: String) -> Array:
 	var full_dir: String = "res://" + _snapshot_dir
 	var dir: DirAccess = DirAccess.open(full_dir)
 	if not dir:
-		return results
-	# 按场景名前缀过滤 JSON 文件
+		print("[SPD] list_snapshots: cannot open dir ", full_dir)
+		# 尝试用 res:// 根目录打开再检查
+		var root_dir: DirAccess = DirAccess.open("res://")
+		if root_dir and root_dir.dir_exists(full_dir):
+			dir = root_dir
+		else:
+			return results
+	print("[SPD] list_snapshots: opened dir ", full_dir)
 	var scene_name: String = scene_path.get_file().replace(".tscn", "").replace(".scn", "")
+	print("[SPD] list_snapshots: scene_name=", scene_name, " scene_path=", scene_path)
 	dir.list_dir_begin()
 	var file_name: String = dir.get_next()
 	while file_name != "":
 		if not dir.current_is_dir() and file_name.begins_with(scene_name + "_") and file_name.ends_with(".json"):
 			var snap: Dictionary = load_snapshot(full_dir + "/" + file_name)
 			if snap.size() > 0:
-				# 附上文件路径，方便后续删除
 				snap["_file_path"] = full_dir + "/" + file_name
 				results.append(snap)
 		file_name = dir.get_next()
 	dir.list_dir_end()
-	# 按时间戳倒序（最新的在前）
 	results.sort_custom(func(a, b): return a["timestamp"] > b["timestamp"])
+	print("[SPD] list_snapshots: found ", results.size(), " snapshots")
 	return results
 
 ## 删除指定路径的快照文件，返回是否成功

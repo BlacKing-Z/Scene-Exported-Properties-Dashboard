@@ -1,36 +1,52 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://c657e6bm3bqlj"]
 
-[ext_resource type="Script" path="res://addons/scene_param_dashboard/ui/dashboard_panel.gd" id="1"]
+[ext_resource type="Script" uid="uid://4wy5aywn4osc" path="res://addons/scene_param_dashboard/ui/dashboard_panel.gd" id="1"]
 
-[node name="DashboardPanel" type="VBoxContainer"]
+[sub_resource type="DPITexture" id="DPITexture_inflh"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
+"
+
+[node name="DashboardPanel" type="VBoxContainer" unique_id=1738174866]
 custom_minimum_size = Vector2(250, 200)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1")
 
-[node name="ToolBar" type="HBoxContainer" parent="."]
+[node name="ToolBar" type="HBoxContainer" parent="." unique_id=1009674333]
 layout_mode = 2
 
-[node name="SearchBar" type="LineEdit" parent="ToolBar"]
+[node name="SearchBar" type="LineEdit" parent="ToolBar" unique_id=1953173768]
 layout_mode = 2
 size_flags_horizontal = 3
+placeholder_text = "搜索"
+right_icon = SubResource("DPITexture_inflh")
 
-[node name="BtnFilter" type="Button" parent="ToolBar"]
+[node name="BtnFilter" type="Button" parent="ToolBar" unique_id=1002017665]
 layout_mode = 2
+tooltip_text = "筛选分组"
 text = "筛选"
+icon = SubResource("DPITexture_inflh")
 
-[node name="BtnSnapshot" type="Button" parent="ToolBar"]
+[node name="BtnSnapshot" type="Button" parent="ToolBar" unique_id=104767920]
 layout_mode = 2
+tooltip_text = "创建快照"
 text = "快照"
+icon = SubResource("DPITexture_inflh")
 
-[node name="BtnSnapshotList" type="Button" parent="ToolBar"]
+[node name="BtnSnapshotList" type="Button" parent="ToolBar" unique_id=1311187778]
 layout_mode = 2
+tooltip_text = "快照管理"
 text = "快照管理"
+icon = SubResource("DPITexture_inflh")
 
-[node name="BtnApply" type="Button" parent="ToolBar"]
+[node name="BtnApply" type="Button" parent="ToolBar" unique_id=1070242630]
+visible = false
 layout_mode = 2
+tooltip_text = "将运行时修改写回 .tscn"
+text = "应用回场景文件"
 
-[node name="Tree" type="Tree" parent="."]
+[node name="Tree" type="Tree" parent="." unique_id=838158385]
 layout_mode = 2
 size_flags_vertical = 3
+columns = 3
 hide_root = true
