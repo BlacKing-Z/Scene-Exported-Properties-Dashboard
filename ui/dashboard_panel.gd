@@ -148,6 +148,7 @@ func _rebuild_tree() -> void:
 	if _search_text == "" and _favorites.size() > 0:
 		var fav_root: TreeItem = _tree.create_item(root_item)
 		fav_root.set_text(0, "★ 收藏")
+		fav_root.set_expand_right(0, true)
 		fav_root.set_selectable(0, false)
 		fav_root.set_selectable(1, false)
 		fav_root.set_selectable(2, false)
@@ -161,6 +162,7 @@ func _rebuild_tree() -> void:
 			continue
 		var group_item: TreeItem = _tree.create_item(root_item)
 		group_item.set_text(0, group_path)
+		group_item.set_expand_right(0, true)
 		group_item.set_selectable(0, false)
 		group_item.set_selectable(1, false)
 		group_item.set_selectable(2, false)
@@ -174,6 +176,7 @@ func _rebuild_tree() -> void:
 			if sg_name != "":
 				parent = _tree.create_item(group_item)
 				parent.set_text(0, sg_name)
+				parent.set_expand_right(0, true)
 				parent.set_selectable(0, false)
 				parent.set_selectable(1, false)
 				parent.set_selectable(2, false)

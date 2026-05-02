@@ -33,8 +33,8 @@ func _get_node_path_relative(node: Node, root: Node) -> String:
 	var node_path: String = str(node.get_path())
 	if not node_path.begins_with(root_path + "/"):
 		return str(node.name)
-	var relative: String = node_path.substr(root_path.length() + 1)
-	return str(root.name) + "/" + relative
+	# 去掉根节点前缀，只保留子路径
+	return node_path.substr(root_path.length() + 1)
 
 ## 从脚本源码解析所有 @export 变量，同时提取 group/subgroup 信息
 func _get_exported_props(node: Node) -> Array:
