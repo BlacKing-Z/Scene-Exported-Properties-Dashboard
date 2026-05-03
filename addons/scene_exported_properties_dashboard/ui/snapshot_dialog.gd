@@ -12,7 +12,7 @@ signal confirmed_with_name(snap_name: String)
 @onready var _name_edit: LineEdit = $VBox/NameEdit
 
 func _ready() -> void:
-	_name_edit.placeholder_text = "Input snapshot's name"
+	_name_edit.placeholder_text = "输入快照名称"
 	# 连接 AcceptDialog 的 confirmed 信号
 	confirmed.connect(_on_confirmed)
 

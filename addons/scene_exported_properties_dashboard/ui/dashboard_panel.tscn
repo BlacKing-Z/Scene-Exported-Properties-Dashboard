@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c657e6bm3bqlj"]
 
-[ext_resource type="Script" uid="uid://dco55jfyl6kta" path="res://addons/scene_exported_properties_dashboard/ui/dashboard_panel.gd" id="1_ayfyt"]
+[ext_resource type="Script" uid="uid://5h7maxc0njgf" path="res://addons/scene_exported_properties_dashboard/ui/dashboard_panel.gd" id="1_ayfyt"]
 
 [sub_resource type="DPITexture" id="DPITexture_ayfyt"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
@@ -18,25 +18,25 @@ layout_mode = 2
 [node name="SearchBar" type="LineEdit" parent="ToolBar" unique_id=1953173768]
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Search"
+placeholder_text = "搜索"
 right_icon = SubResource("DPITexture_ayfyt")
 
 [node name="BtnFilter" type="Button" parent="ToolBar" unique_id=1002017665]
 layout_mode = 2
-tooltip_text = "Filter"
-text = "Filter"
+tooltip_text = "筛选分组"
+text = "筛选"
 icon = SubResource("DPITexture_ayfyt")
 
 [node name="BtnSnapshot" type="Button" parent="ToolBar" unique_id=104767920]
 layout_mode = 2
-tooltip_text = "Save Snapshot"
-text = "Snapshot"
+tooltip_text = "创建快照"
+text = "快照"
 icon = SubResource("DPITexture_ayfyt")
 
 [node name="BtnSnapshotList" type="Button" parent="ToolBar" unique_id=1311187778]
 layout_mode = 2
-tooltip_text = "Snapshots list"
-text = "Snapshot List"
+tooltip_text = "快照管理"
+text = "快照管理"
 icon = SubResource("DPITexture_ayfyt")
 
 [node name="BtnApply" type="Button" parent="ToolBar" unique_id=1070242630]

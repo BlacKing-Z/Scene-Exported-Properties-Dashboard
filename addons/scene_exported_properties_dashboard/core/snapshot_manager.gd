@@ -114,7 +114,7 @@ func list_snapshots(scene_path: String) -> Array:
 		file_name = dir.get_next()
 	dir.list_dir_end()
 	results.sort_custom(func(a, b): return a["timestamp"] > b["timestamp"])
-	print("[SPD] list_snapshots: found ", results.size(), " snapshots")
+	## print("[SPD] list_snapshots: found ", results.size(), " snapshots")
 	return results
 
 ## 删除指定路径的快照文件，返回是否成功

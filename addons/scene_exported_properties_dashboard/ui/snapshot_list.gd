@@ -16,8 +16,8 @@ func setup(snapshots: Array, mgr) -> void:
 	_snapshot_mgr = mgr
 
 func _ready() -> void:
-	_btn_restore.text = "Restore"
-	_btn_delete.text = "Delete"
+	_btn_restore.text = "还原"
+	_btn_delete.text = "删除"
 	_btn_restore.pressed.connect(_on_restore)
 	_btn_delete.pressed.connect(_on_delete)
 	_list.item_selected.connect(_on_item_selected)
