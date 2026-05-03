@@ -6,7 +6,7 @@ var _dock: EditorDock
 
 func _enter_tree() -> void:
 	_dock = EditorDock.new()
-	_dock.title = "导出变量表"
+	_dock.title = "Dashboard"
 	_dock.default_slot = EditorDock.DOCK_SLOT_RIGHT_UL
 	var panel: VBoxContainer = preload("ui/dashboard_panel.tscn").instantiate()
 	panel.plugin = self

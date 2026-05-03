@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://ch0tyou2sjd0j"]
 
-[ext_resource type="Script" uid="uid://bqadin5k6inbr" path="res://addons/scene_param_dashboard/ui/filter_dialog.gd" id="1"]
+[ext_resource type="Script" uid="uid://dgwhh4438kta8" path="res://addons/scene_exported_properties_dashboard/ui/filter_dialog.gd" id="1_1h4rk"]
 
 [node name="FilterDialog" type="AcceptDialog" unique_id=1046713913]
 oversampling_override = 1.0
-title = "筛选分组显示"
-script = ExtResource("1")
+title = "Filter Group"
+position = Vector2i(0, 36)
+visible = true
+script = ExtResource("1_1h4rk")
 
 [node name="Scroll" type="ScrollContainer" parent="." unique_id=780013320]
 offset_left = 8.0

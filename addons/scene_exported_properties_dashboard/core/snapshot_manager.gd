@@ -30,8 +30,8 @@ func _init(p_editor_interface: EditorInterface) -> void:
 
 ## 读取快照目录设置，优先从 ProjectSettings 读取自定义路径，否则使用默认 "snapshots"
 func _get_snapshot_dir() -> String:
-	if ProjectSettings.has_setting("plugin/scene_param_dashboard/snapshot_dir"):
-		var custom: String = ProjectSettings.get_setting("plugin/scene_param_dashboard/snapshot_dir")
+	if ProjectSettings.has_setting("plugin/scene_exported_properties_dashboard/snapshot_dir"):
+		var custom: String = ProjectSettings.get_setting("plugin/scene_exported_properties_dashboard/snapshot_dir")
 		if custom != "":
 			return custom
 	return "snapshots"
@@ -39,7 +39,7 @@ func _get_snapshot_dir() -> String:
 ## 设置自定义快照目录并持久化到 ProjectSettings
 func set_snapshot_dir(p_dir: String) -> void:
 	_snapshot_dir = p_dir
-	ProjectSettings.set_setting("plugin/scene_param_dashboard/snapshot_dir", p_dir)
+	ProjectSettings.set_setting("plugin/scene_exported_properties_dashboard/snapshot_dir", p_dir)
 	ProjectSettings.save()
 
 ## 创建快照
@@ -93,16 +93,16 @@ func list_snapshots(scene_path: String) -> Array:
 	var full_dir: String = "res://" + _snapshot_dir
 	var dir: DirAccess = DirAccess.open(full_dir)
 	if not dir:
-		print("[SPD] list_snapshots: cannot open dir ", full_dir)
+		## print("[SPD] list_snapshots: cannot open dir ", full_dir)
 		# 尝试用 res:// 根目录打开再检查
 		var root_dir: DirAccess = DirAccess.open("res://")
 		if root_dir and root_dir.dir_exists(full_dir):
 			dir = root_dir
 		else:
 			return results
-	print("[SPD] list_snapshots: opened dir ", full_dir)
+	## print("[SPD] list_snapshots: opened dir ", full_dir)
 	var scene_name: String = scene_path.get_file().replace(".tscn", "").replace(".scn", "")
-	print("[SPD] list_snapshots: scene_name=", scene_name, " scene_path=", scene_path)
+	## print("[SPD] list_snapshots: scene_name=", scene_name, " scene_path=", scene_path)
 	dir.list_dir_begin()
 	var file_name: String = dir.get_next()
 	while file_name != "":

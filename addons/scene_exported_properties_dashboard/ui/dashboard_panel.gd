@@ -4,9 +4,9 @@ extends VBoxContainer
 
 var plugin: EditorPlugin
 
-const _CollectorScript = preload("res://addons/scene_param_dashboard/core/property_collector.gd")
-const _EditorScript = preload("res://addons/scene_param_dashboard/core/property_editor.gd")
-const _SnapshotScript = preload("res://addons/scene_param_dashboard/core/snapshot_manager.gd")
+const _CollectorScript = preload("res://addons/scene_exported_properties_dashboard/core/property_collector.gd")
+const _EditorScript = preload("res://addons/scene_exported_properties_dashboard/core/property_editor.gd")
+const _SnapshotScript = preload("res://addons/scene_exported_properties_dashboard/core/snapshot_manager.gd")
 
 var _collector
 var _prop_editor
@@ -28,20 +28,20 @@ var _sync_timer: float = 0.0
 @onready var _tree: Tree = $Tree
 
 func _ready() -> void:
-	_search_bar.placeholder_text = "搜索"
+	_search_bar.placeholder_text = "Search"
 	_search_bar.right_icon = get_theme_icon("Search", "EditorIcons")
 	_search_bar.text_changed.connect(_on_search_changed)
 
-	_btn_filter.icon = get_theme_icon("Filter", "EditorIcons")
-	_btn_filter.tooltip_text = "筛选分组"
+	_btn_filter.icon = get_theme_icon("AnimationFilter", "EditorIcons")
+	_btn_filter.tooltip_text = "Filter"
 	_btn_filter.pressed.connect(_on_filter_pressed)
 
 	_btn_snapshot.icon = get_theme_icon("Save", "EditorIcons")
-	_btn_snapshot.tooltip_text = "创建快照"
+	_btn_snapshot.tooltip_text = "Save Snapshot"
 	_btn_snapshot.pressed.connect(_on_snapshot_pressed)
 
 	_btn_snapshot_list.icon = get_theme_icon("FileList", "EditorIcons")
-	_btn_snapshot_list.tooltip_text = "快照管理"
+	_btn_snapshot_list.tooltip_text = "Snapshot list"
 	_btn_snapshot_list.pressed.connect(_on_snapshot_list_pressed)
 
 	_btn_apply.text = "应用回场景文件"
@@ -147,7 +147,7 @@ func _rebuild_tree() -> void:
 
 	if _search_text == "" and _favorites.size() > 0:
 		var fav_root: TreeItem = _tree.create_item(root_item)
-		fav_root.set_text(0, "★ 收藏")
+		fav_root.set_text(0, "★ Favorites")
 		fav_root.set_expand_right(0, true)
 		fav_root.set_selectable(0, false)
 		fav_root.set_selectable(1, false)
@@ -336,7 +336,7 @@ func _on_search_changed(text: String) -> void:
 	_rebuild_tree()
 
 func _on_filter_pressed() -> void:
-	var dialog = load("res://addons/scene_param_dashboard/ui/filter_dialog.tscn").instantiate()
+	var dialog = load("res://addons/scene_exported_properties_dashboard/ui/filter_dialog.tscn").instantiate()
 	dialog.setup(_get_all_groups(), _hidden_groups)
 	add_child(dialog)
 	dialog.confirmed_with_data.connect(_on_filter_confirmed)
@@ -347,7 +347,7 @@ func _on_filter_confirmed(hidden: Dictionary) -> void:
 	_rebuild_tree()
 
 func _on_snapshot_pressed() -> void:
-	var dialog = load("res://addons/scene_param_dashboard/ui/snapshot_dialog.tscn").instantiate()
+	var dialog = load("res://addons/scene_exported_properties_dashboard/ui/snapshot_dialog.tscn").instantiate()
 	add_child(dialog)
 	dialog.confirmed_with_name.connect(_on_snapshot_confirmed)
 	dialog.popup_centered(Vector2i(300, 120))
@@ -359,7 +359,7 @@ func _on_snapshot_confirmed(snap_name: String) -> void:
 	_snapshot_mgr.take_snapshot(snap_name, scene_path, _collected)
 
 func _on_snapshot_list_pressed() -> void:
-	var dialog = load("res://addons/scene_param_dashboard/ui/snapshot_list.tscn").instantiate()
+	var dialog = load("res://addons/scene_exported_properties_dashboard/ui/snapshot_list.tscn").instantiate()
 	var scene_path: String = _get_edited_scene_path()
 	dialog.setup(_snapshot_mgr.list_snapshots(scene_path), _snapshot_mgr)
 	add_child(dialog)

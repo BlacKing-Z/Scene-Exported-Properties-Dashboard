@@ -1,17 +1,19 @@
 [gd_scene format=3 uid="uid://tsgeamykefv2"]
 
-[ext_resource type="Script" uid="uid://qomf40mdlnwh" path="res://addons/scene_param_dashboard/ui/snapshot_list.gd" id="1"]
+[ext_resource type="Script" uid="uid://kyna7avm5e5c" path="res://addons/scene_exported_properties_dashboard/ui/snapshot_list.gd" id="1_edt56"]
 
 [node name="SnapshotList" type="AcceptDialog" unique_id=1671271566]
 oversampling_override = 1.0
-title = "快照管理"
+title = "Snapshot list"
 position = Vector2i(0, 36)
-script = ExtResource("1")
+size = Vector2i(147, 100)
+visible = true
+script = ExtResource("1_edt56")
 
 [node name="VBox" type="VBoxContainer" parent="." unique_id=399540587]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 92.0
+offset_right = 139.0
 offset_bottom = 51.0
 
 [node name="List" type="ItemList" parent="VBox" unique_id=445140906]
@@ -24,9 +26,9 @@ layout_mode = 2
 [node name="BtnRestore" type="Button" parent="VBox/HBox" unique_id=844107363]
 layout_mode = 2
 disabled = true
-text = "恢复"
+text = "Restore"
 
 [node name="BtnDelete" type="Button" parent="VBox/HBox" unique_id=558982430]
 layout_mode = 2
 disabled = true
-text = "删除"
+text = "Delete"
