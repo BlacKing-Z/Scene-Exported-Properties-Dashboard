@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ch0tyou2sjd0j"]
 
-[ext_resource type="Script" uid="uid://dgwhh4438kta8" path="res://addons/scene_exported_properties_dashboard/ui/filter_dialog.gd" id="1_1h4rk"]
+[ext_resource type="Script" path="res://addons/scene_exported_properties_dashboard/ui/filter_dialog.gd" id="1_1h4rk"]
 
 [node name="FilterDialog" type="AcceptDialog" unique_id=1046713913]
 oversampling_override = 1.0

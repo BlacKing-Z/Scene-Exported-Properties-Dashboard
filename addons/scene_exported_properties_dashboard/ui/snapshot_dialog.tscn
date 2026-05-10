@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b8s3hkkrtdl88"]
 
-[ext_resource type="Script" uid="uid://d088xxm1iy7sk" path="res://addons/scene_exported_properties_dashboard/ui/snapshot_dialog.gd" id="1_m5sfv"]
+[ext_resource type="Script" path="res://addons/scene_exported_properties_dashboard/ui/snapshot_dialog.gd" id="1_m5sfv"]
 
 [node name="SnapshotDialog" type="AcceptDialog" unique_id=767733062]
 oversampling_override = 1.0
